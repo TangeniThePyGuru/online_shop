@@ -69,3 +69,7 @@ function set_session($key, $data){
 function get_session($key){
     return $_SESSION[$key];
 }
+
+function hidden_field($field_name) {
+    return `<input type="hidden" name="${field_name}">`;
+}
