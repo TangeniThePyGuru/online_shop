@@ -22,7 +22,7 @@ abstract class BaseModel {
 
     public function get_many()
     {
-        return mysqli_fetch_assoc(DB::select_many_from_db($this->table));
+        return DB::select_many_from_db($this->table);
     }
 
     public function delete($id)
