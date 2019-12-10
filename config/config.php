@@ -30,8 +30,8 @@ function config($file_name)
     return ROOT_PATH . "config/$file_name";
 }
 
-function extend_layout() {
-    return require_once ROOT_PATH. "layout.php";;
+function extend_layout($layout = "views/layouts/layout.php") {
+    return require_once ROOT_PATH. $layout;
 }
 
 // close every page that extends the layout page with this method
@@ -42,7 +42,7 @@ function close_layout() {
 // get request
 function get_request($key)
 {
-    return isset($_GET[$key]);
+    return array_key_exists($key, $_GET);   
 }
 
 // post request
@@ -71,5 +71,5 @@ function get_session($key){
 }
 
 function hidden_field($field_name) {
-    return `<input type="hidden" name="${field_name}">`;
+    return `<input type="text" hidden name="${field_name}" value="${field_name}">`;
 }
