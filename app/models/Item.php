@@ -8,8 +8,4 @@ class Item extends BaseModel
 {
     protected $table = 'items';
     
-    public function __construct()
-    {
-        $this->get_many();
-    }
 }
