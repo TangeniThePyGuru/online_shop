@@ -22,14 +22,22 @@ $item = new Item();
             <th>Description</th>
             <th>Price</th>
             <th>Image</th>
+            <th>Action</th>
         </tr>
-        <?php while($row = mysqli_fetch_assoc($items)): ?>
+        <?php while ($row = mysqli_fetch_assoc($items)) : ?>
 
             <tr>
                 <td><?php echo $row['name'] ?></td>
                 <td><?php echo $row['description']  ?></td>
                 <td><?php echo $row['price'] ?></td>
-                <td> <img src="<?php echo $row['img_url'] ?>" width="100px" alt="item_image">  </td>
+                <td> <img src="<?php echo $row['img_url'] ?>" width="100px" alt="item_image"> </td>
+                <td>
+                    <form action="<?php echo controller('item.controller.php') ?>" method="post">
+                        <input type="hidden" name="add_to_cart">
+                        <input type="number" name="quanity" value="1">
+                        <input type="submit" value="ADD TO CART">
+                    </form>
+                </td>
             </tr>
 
         <?php endwhile; ?>
