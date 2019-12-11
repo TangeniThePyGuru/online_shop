@@ -29,4 +29,8 @@ abstract class BaseModel {
     {
         return DB::delete_from_db($this->table, $id);
     }
+
+    public function query_db($query){
+        return DB::query_db($query);
+    }
 }
