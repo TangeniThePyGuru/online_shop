@@ -17,7 +17,7 @@ class Cart
         return $this->table;
     }
 
-    function add_to_cart($item){
-        array_push($this->table['items'], $item);
+    function add_to_cart($key, $quantity){
+        array_push($this->table, [$key => $quantity]);
     }
 }
