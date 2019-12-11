@@ -8,7 +8,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> Online Shop | Home Page </title>
 
-    <!-- TODO: Fix this style sheet -->
     <style >
         <?php require assets("style/style.css") ?>
     </style>
