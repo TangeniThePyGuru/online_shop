@@ -45,4 +45,9 @@ class DB {
         $values = implode("','", $values);
         return \mysqli_query(DB::connect(), "INSERT INTO $table VALUES ($values)");
     }
+
+    // dynamic query
+    public static function query_db($query){
+        return \mysqli_query(DB::connect(), "$query");
+    } 
 }
