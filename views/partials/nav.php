@@ -4,12 +4,12 @@
 
     <a href="/index.php">Home</a>
     <br>
-    <a href="">Browse Items</a>
+    <a href="/views/items/browse_items.php">Browse Items</a>
     <br>
-    <a href="">Order Hitory</a>
+    <a href="/views/orders/make_an_order.php">Order Hitory</a>
     <br>
-    <a href="">Shopping Cart</a>
+    <a href="/views/items/shopping_cart.php">Shopping Cart</a>
     <br>
-    <a href="">Inventory</a>
-    
+    <a href="/views/inventory/index.php">Inventory</a>
+
 </div>
