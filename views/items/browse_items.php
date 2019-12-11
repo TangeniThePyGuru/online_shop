@@ -34,7 +34,8 @@ $item = new Item();
                 <td>
                     <form action="<?php echo controller('item.controller.php') ?>" method="post">
                         <input type="hidden" name="add_to_cart">
-                        <input type="number" name="quanity" value="1">
+                        <input type="hidden" name="item_id" value="<?php echo $row['id'] ?>">
+                        <input type="number" name="quantity" value="1">
                         <input type="submit" value="ADD TO CART">
                     </form>
                 </td>

@@ -14,7 +14,8 @@ elseif (get_request('edit_item')): # else update
     die('lets add an item in the inventory');
 elseif (post_request('add_to_cart')) : # else update
     #....
-    die('lets update an item in the cart');
+
+    die(var_dump($_POST));
 else:
     die(var_dump('else block'));
 endif;
