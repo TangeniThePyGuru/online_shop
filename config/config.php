@@ -1,8 +1,11 @@
 <?php
 
+use App\Models\Session;
+
 define('ROOT_PATH', $_SERVER['DOCUMENT_ROOT'] . '/');
 // bring up the global session variable
-session_start();
+require_once app('models/Session.php');
+$sessionInstance =  Session::getInstance();
 
 // global variables and configurations
 function app_footer() {
