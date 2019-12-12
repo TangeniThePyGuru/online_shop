@@ -16,7 +16,7 @@ class Cart
     public function get_cart(){
         return $this->table;
     }
-
+    // TODO: To be tested
     function add_to_cart($key, $quantity){
         array_push($this->table, [$key => $quantity]);
     }
