@@ -1,14 +1,16 @@
 <?php
 
 define('ROOT_PATH', $_SERVER['DOCUMENT_ROOT'] . '/');
-// global variables and configurations
+// bring up the global session variable
+session_start();
 
+// global variables and configurations
 function app_footer() {
-    view("partials/footer.php");
+    return view("partials/footer.php");
 }
 
 function app_header() {
-    view("partials/header.php");
+    return require_once view("partials/header.php");
 }
 
 function view($file_name) {
