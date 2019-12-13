@@ -7,8 +7,10 @@ app_header();
 
 ?>
 
+<div>
 
+    <?php
+        require_once view('partials/nav.php');
+    ?>
 
-
-
-
+</div>
