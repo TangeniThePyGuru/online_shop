@@ -9,10 +9,11 @@ require_once ROOT_PATH .  "config/db.php";
 abstract class BaseModel {
 
     protected $table;
+    protected $columns;
 
     public function insert($values)
     {
-        return DB::insert_to_db($values , $this->table);
+        return DB::insert_to_db($values, $this->columns, $this->table);
     }
 
     public function get_one($id)
