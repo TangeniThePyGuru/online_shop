@@ -17,7 +17,10 @@ $item = new Item();
     $item = mysqli_fetch_assoc($item->get_one($_GET['id']));
     ?>
 
-    <form method="<?php controller('item.controller.php') ?>" action="post">
+    <h3>Update Item</h3>
+
+    <form method="post" action="<?php echo "/app/controllers/item.controller.php" ?>">
+        <input type="hidden" name="update_item" value="<?php echo $item['id'] ?>">
         <input type="hidden" name="id" value="<?php echo $item['id'] ?>">
         <label for="name">Item name:</label>
         <input type="text" name="name" value="<?php echo $item['name'] ?>">
