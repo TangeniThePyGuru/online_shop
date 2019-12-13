@@ -12,7 +12,7 @@ $item = new Item();
 
 <!-- TODO: Implement search items | use data tables or something else -->
 
-<div id="dash">
+<div class="center-text">
 
     <?php $items = $item->get_many(); ?>
     <div>
