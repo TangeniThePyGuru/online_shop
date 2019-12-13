@@ -18,14 +18,38 @@ $cart = new Cart();
     <p> <?php var_dump($cart->get_cart());
         $items = $item->get_many(); ?> </p>
 
+        // loop through the session[cart] and find every element in the db 
+        $items = $cart->items_in_cart();
+        $quantities = $cart->quantities();
+        
+        ?>
+    </p>
+
+    <div class="center-text">
+        <!-- add to cart in the current users session -->
+        <form action="<?php echo controller('items.controller.php') ?>" method="post">
+            <input type="hidden" name="make_order">
+            <input type="submit" value="ORDER ITEMS">
+        </form>
+        <br>
+        <form action="<?php echo controller('items.controller.php') ?>" method="post">
+            <!--TODO: implement clear cart-->
+            <input type="hidden" name="clear_cart">
+            <input type="submit" value="REMOVE ITEMS FROM CART">
+        </form>
+    </div>
+    <br>
     <table>
         <tr>
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
+            <th>Quantity</th>
             <th>Image</th>
         </tr>
-        <?php while ($row = mysqli_fetch_assoc($items)) : ?>
+        <?php 
+            $count = 0;
+            while ($row = mysqli_fetch_assoc($items)) : ?>
 
             <tr>
                 <td><?php echo $row['name'] ?></td>
@@ -34,7 +58,9 @@ $cart = new Cart();
                 <td> <img src="<?php echo $row['img_url'] ?>" width="100px" alt="item_image"> </td>
             </tr>
 
-        <?php endwhile; ?>
+        <?php 
+            $count ++;
+            endwhile; ?>
     </table>
 
     <div>
