@@ -12,7 +12,10 @@ $item = new Item();
 
 
 <div id="dash">
-
+    <div>
+        <button>ADD NEW ITEM</button>
+    </div>
+    <br>
     <?php
     $items = $item->get_many();
     ?>
