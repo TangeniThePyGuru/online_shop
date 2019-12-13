@@ -15,7 +15,13 @@ $item = new Item();
 <div id="dash">
 
     <?php $items = $item->get_many(); ?>
-
+    <div>
+        <form action="">
+            <input type="text" name="search_key">
+            <input type="submit" name="search" value="SEARCH">
+        </form>
+    </div>
+    <br>
     <table>
         <tr>
             <th>Name</th>
