@@ -32,7 +32,7 @@ $item = new Item();
                 <td><?php echo $row['price'] ?></td>
                 <td> <img src="<?php echo $row['img_url'] ?>" width="100px" alt="item_image"> </td>
                 <td>
-                    <form action="<?php echo controller('item.controller.php') ?>" method="post">
+                    <form action="/app/controllers/item.controller.php" method="post">
                         <input type="hidden" name="add_to_cart">
                         <input type="hidden" name="item_id" value="<?php echo $row['id'] ?>">
                         <input type="number" name="quantity" value="1">
