@@ -7,6 +7,7 @@ $client = new Client();
 $session = Session::getInstance();
 $user_table = 'clients';
 
+// register client
 function register($name, $email, $password, $address){
     global $client;
     return $client->insert([$name, $email, hash('md5', $password), $address]);
