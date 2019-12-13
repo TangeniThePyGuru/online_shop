@@ -39,11 +39,12 @@ class DB {
     }
 
     // insert
-    public static function insert_to_db($values, $table)
-    {
+    public static function insert_to_db($values, $columns, $table)
+    {    
+        $columns = implode(' , ', $columns);
+        $values = "'" . implode("' , '", $values) . "'";
         
-        $values = implode("','", $values);
-        return \mysqli_query(DB::connect(), "INSERT INTO $table VALUES ($values)");
+        return \mysqli_query(DB::connect(), "INSERT INTO $table ($columns) VALUES ($values)");
     }
 
     // dynamic query
