@@ -61,18 +61,12 @@ function controller($file_name)
     return "/app/controllers/$file_name"; 
 }
 
-function redirect_to($file_name){
-    header("Location: ${view($file_name)}");
-}
-
-// TODO: TEST
-function set_session($key, $data){
-    $_SESSION[$key] = $data;
-}
-
-// TODO: TEST
-function get_session($key){
-    return $_SESSION[$key];
+function redirect_to($file_name, $param = null){
+    if ($param != null):
+        header("Location: $file_name?id=$param");
+    else:
+        header("Location: $file_name");
+    endif;
 }
 
 function hidden_field($field_name) {
