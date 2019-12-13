@@ -34,4 +34,16 @@ abstract class BaseModel {
     public function query_db($query){
         return DB::query_db($query);
     }
+
+    public function get_in_range($ids){
+        $query = "";
+        
+        for($i = 0; $i < count($ids) - 2; $i++):
+            $query .= (string) "id = ". $ids[$i]. " OR ";
+        endfor;
+
+        $query .= " id = ". $ids[count($ids) - 1] . ";";
+        $query = "SELECT * FROM $this->table WHERE $query";
+        return $this->query_db($query);
+    }
 }
