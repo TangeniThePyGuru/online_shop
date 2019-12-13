@@ -23,8 +23,9 @@ elseif (isset($_GET) && get_request('edit_item')): # else update
     redirect_to('/views/inventory/update-items.php', $_GET['id']);
 elseif (isset($_POST) &&  post_request('add_to_cart')) : # else update
     #....
-    die('lets insert an item in the inventory');
-elseif (get_request('delete')):
+    $elems = $cart->add_to_cart($_POST['item_id'], $_POST['quantity']);
+    redirect_to('/views/items/browse_items.php');
+elseif (isset($_POST) &&  post_request('add_item')) : # else open add form
     #....
     redirect_to('/views/inventory/create.php');
 elseif (isset($_POST) &&  post_request('update_item')) : # else edit
