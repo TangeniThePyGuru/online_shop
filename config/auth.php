@@ -1,8 +1,11 @@
 <?php
 
 use App\Models\Client;
+use App\Models\Session;
 
 $client = new Client();
+$session = Session::getInstance();
+$user_table = 'clients';
 
 function register($name, $email, $password, $address){
     global $client;
@@ -13,53 +16,49 @@ function register($name, $email, $password, $address){
 function login($email, $password)
 {
     global $client;
-    $user = $client->query_db("SELECT * FROM clients where  email = $email AND password = ${hash('md5',$password)}");
+    global $session;
+    global $user_table;
+    $user = $client->query_db("SELECT * FROM $user_table WHERE  email = $email AND password = ${hash('md5',$password)}");
 
     if($user) {
-        // TODO: start a new session
+        $session->__set('logged_in_user', mysqli_fetch_assoc($user)['id']);
     } else {
-        // TODO: flush message => wrong credentials
-    }
+        die('Wrong credentials');
+    } 
 
     // redirect to appropriate page
+    redirect_to(view('items/browse_items.php'));
 }
-
-/*
-    TODO: Implement logout
-*/
 
 // logout
+// TODO: Test logout
 function logout()
 {
-    # code...
+    end_session();
+    redirect_to('/index.php');
 }
-
-/*
-    TODO: Implement start session
-*/
-
-// start session
-function begin_session()
-{
-    # code...
-}
-
-/*
-    TODO: Implement end_session
-*/
 
 // kill session
 function end_session()
 {
-    # code...
+    global $session;
+    return $session->destroy();
 }
-// TODO: is user logged_in?
-function logged_in(){
-    # code...
+// is user logged_in?
+
+function is_logged_in(){
+    global $session;
+    return isset($session['logged_in_user']);
 }
 
-// TODO: who is the currnt logged in user's full profile
+// who is the currnt logged in user's full profile
 function logged_in_user(){
-    # code....
+    global $client;
+    global $session;
+    if (is_logged_in()){
+        return $client->get_one($session['logged_in_user']);
+    }
+    
+    return null;
 }
 
