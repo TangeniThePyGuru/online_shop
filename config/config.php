@@ -4,7 +4,7 @@ use App\Models\Session;
 
 define('ROOT_PATH', $_SERVER['DOCUMENT_ROOT'] . '/');
 // bring up the global session variable
-require_once app('models/Session.php');
+require_once app('models.php');
 $sessionInstance =  Session::getInstance();
 
 // global variables and configurations
