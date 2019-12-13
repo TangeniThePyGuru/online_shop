@@ -5,7 +5,15 @@ require_once app('models/Item.php');
 
 if (isset($_GET) &&  get_request('insert')):
     #....
-    die('lets insert an item in the inventory');
+    $item->insert([
+        $_POST['name'], $_POST['description'], $_POST['quantity'], $_POST['price']
+    ]);
+    
+    if($item == true):
+        redirect_to('/views/inventory/index.php');
+    else:
+        redirect_to('/views/inventory/create.php');
+    endif;
 elseif (isset($_GET) &&  get_request('delete')):
     #....
     die('lets update an item in the inventory');
@@ -18,8 +26,8 @@ elseif (isset($_POST) &&  post_request('add_to_cart')) : # else update
     die('lets insert an item in the inventory');
 elseif (get_request('delete')):
     #....
-    die('lets update an item in the inventory');
-elseif (get_request('edit_item')): # else update
+    redirect_to('/views/inventory/create.php');
+elseif (isset($_POST) &&  post_request('update_item')) : # else edit
     #....
     die('lets add an item in the inventory');
 elseif (post_request('add_to_cart')) : # else update
