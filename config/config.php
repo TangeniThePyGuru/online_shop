@@ -47,13 +47,13 @@ function close_layout() {
 // get request
 function get_request($key)
 {
-    return array_key_exists($key, $_GET);   
+    return isset($_GET) && array_key_exists($key, $_GET);   
 }
 
 // post request
 function post_request($key)
 {
-    return isset($_POST[$key]);
+    return isset($_POST) && array_key_exists($key, $_POST) ;
 }
 
 function controller($file_name)
