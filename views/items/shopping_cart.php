@@ -12,64 +12,79 @@ $cart = new Cart();
 ?>
 <?php extend_layout(); ?>
 
-<!-- TODO: Read up on sessions before implementation -->
-<div id="dash">
+<div class="center-text">
 
-    <p> <?php var_dump($cart->get_cart());
-        $items = $item->get_many(); ?> </p>
+    <?php
 
-        // loop through the session[cart] and find every element in the db 
+    // loop through the session[cart] and find every element in the db 
+    if (!$cart->cart_is_empty()) :
         $items = $cart->items_in_cart();
         $quantities = $cart->quantities();
-        
-        ?>
-    </p>
+    endif;
+    ?>
 
-    <div class="center-text">
+    <div">
         <!-- add to cart in the current users session -->
-        <form action="<?php echo controller('items.controller.php') ?>" method="post">
-            <input type="hidden" name="make_order">
-            <input type="submit" value="ORDER ITEMS">
-        </form>
-        <br>
-        <form action="<?php echo controller('items.controller.php') ?>" method="post">
-            <!--TODO: implement clear cart-->
-            <input type="hidden" name="clear_cart">
-            <input type="submit" value="REMOVE ITEMS FROM CART">
-        </form>
+        <?php
+        if (!$cart->cart_is_empty()) :
+            ?>
+            <form action="<?php echo controller('items.controller.php') ?>" method="post">
+                <!-- TODO: Implement make an order -->
+                <input type="hidden" name="make_order">
+                <input type="submit" value="ORDER ITEMS">
+            </form>
+            <br>
+            <form action="<?php echo controller('items.controller.php') ?>" method="post">
+                <!--TODO: implement clear cart-->
+                <input type="hidden" name="clear_cart">
+                <input type="submit" value="REMOVE ITEMS FROM CART">
+            </form>
+        <?php
+        else :
+
+        endif;
+        ?>
     </div>
     <br>
     <table>
         <tr>
+            <?php
+                if(!$cart->cart_is_empty()):
+            ?>
+
             <th>Name</th>
             <th>Description</th>
             <th>Price</th>
             <th>Quantity</th>
             <th>Image</th>
+
+            <?php
+                endif;
+            ?>
         </tr>
-        <?php 
+        <?php
+        if (!$cart->cart_is_empty()) :
             $count = 0;
             while ($row = mysqli_fetch_assoc($items)) : ?>
 
-            <tr>
-                <td><?php echo $row['name'] ?></td>
-                <td><?php echo $row['description']  ?></td>
-                <td><?php echo $row['price'] ?></td>
-                <td> <img src="<?php echo $row['img_url'] ?>" width="100px" alt="item_image"> </td>
-            </tr>
+                <tr>
+                    <td><?php echo $row['name'] ?></td>
+                    <td><?php echo $row['description']  ?></td>
+                    <td><?php echo $row['price'] ?></td>
+                    <td><?php echo $quantities[$count] ?></td>
+                    <td> <img src="<?php echo $row['img_url'] ?>" width="100px" alt="item_image"> </td>
+                </tr>
 
-        <?php 
-            $count ++;
-            endwhile; ?>
+            <?php
+                    $count++;
+                endwhile;
+            else :
+                ?>
+            <p> No Items in Cart!</p>
+        <?php
+        endif;
+        ?>
     </table>
-
-    <div>
-        <!-- add to cart in the current users session -->
-        <form action="<?php echo controller('items.controller.php') ?>" method="post">
-            <input type="hidden" name="make_order">
-            <input type="submit" value="ORDER ITEMS">
-        </form>
-    </div>
 
 </div>
 
