@@ -8,12 +8,12 @@ require_once app('models/Item.php');
 $item = new Item();
 $cart = new Cart();
 
-if (isset($_GET) &&  get_request('insert')):
+if (isset($_POST) && post_request('insert')):
     #....
     $item->insert([
         $_POST['name'], $_POST['description'], $_POST['quantity'], $_POST['price']
     ]);
-    
+
     if($item == true):
         redirect_to('/views/inventory/index.php');
     else:
@@ -35,10 +35,7 @@ elseif (isset($_POST) &&  post_request('add_item')) : # else open add form
     redirect_to('/views/inventory/create.php');
 elseif (isset($_POST) &&  post_request('update_item')) : # else edit
     #....
-    die('lets add an item in the inventory');
-elseif (post_request('add_to_cart')) : # else update
-    #....
-
+    // TODO: Implement update an item
     die(var_dump($_POST));
 else:
     die(var_dump('else block'));
