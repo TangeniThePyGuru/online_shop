@@ -44,13 +44,14 @@ $cart = new Cart();
 
         endif;
         ?>
-    </div>
-    <br>
+</div>
+<br>
+<?php
+if (!$cart->cart_is_empty()) :
+    ?>
     <table>
         <tr>
-            <?php
-                if(!$cart->cart_is_empty()):
-            ?>
+
 
             <th>Name</th>
             <th>Description</th>
@@ -58,34 +59,35 @@ $cart = new Cart();
             <th>Quantity</th>
             <th>Image</th>
 
-            <?php
-                endif;
-            ?>
         </tr>
         <?php
-        if (!$cart->cart_is_empty()) :
             $count = 0;
             while ($row = mysqli_fetch_assoc($items)) : ?>
 
-                <tr>
-                    <td><?php echo $row['name'] ?></td>
-                    <td><?php echo $row['description']  ?></td>
-                    <td><?php echo $row['price'] ?></td>
-                    <td><?php echo $quantities[$count] ?></td>
-                    <td> <img src="<?php echo $row['img_url'] ?>" width="100px" alt="item_image"> </td>
-                </tr>
+            <tr>
+                <td><?php echo $row['name'] ?></td>
+                <td><?php echo $row['description']  ?></td>
+                <td><?php echo $row['price'] ?></td>
+                <td><?php echo $quantities[$count] ?></td>
+                <td> <img src="<?php echo $row['img_url'] ?>" width="100px" alt="item_image"> </td>
+            </tr>
 
-            <?php
-                    $count++;
-                endwhile;
-            else :
-                ?>
-            <p> No Items in Cart!</p>
         <?php
-        endif;
+                $count++;
+            endwhile;
         ?>
-    </table>
 
+    </table>
+<?php
+else:
+?>
+
+
+<p> No Items in Cart!</p>
+
+<?php
+endif;
+?>
 </div>
 
 
