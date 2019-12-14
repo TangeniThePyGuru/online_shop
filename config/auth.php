@@ -1,6 +1,6 @@
 <?php
 require_once($_SERVER['DOCUMENT_ROOT'] . '/'. 'config/config.php');
-
+require_once(app('models/Session.php'));
 use App\Models\Client;
 use App\Models\Session;
 
