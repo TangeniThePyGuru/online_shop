@@ -69,14 +69,25 @@ class Cart
         $count = 0;
         $total = 0;
         $quantity = $this->quantities();
-
+        $items = $this->items_in_cart();
+        
         if (!$this->cart_is_empty()):
-            while($row = mysqli_fetch_assoc($this->items_in_cart())):
-                $total += ($row['price'] * $quantity[$count]);
-                $count++;
+            while($row = mysqli_fetch_assoc($items)):
+                $total += ($row['price'] * $quantity[$count++]);
+                // die(var_dump($total));
             endwhile;
-            return $total;
         endif;
-        return 0.0;
+
+        return $total;
+    }
+
+    public function total_items()
+    {
+        $total = 0;
+        foreach($this->quantities() as $quantity):
+            $total += $quantity;
+        endforeach;
+
+        return $total;
     }
 }
