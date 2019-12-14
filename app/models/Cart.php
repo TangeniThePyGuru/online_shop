@@ -10,7 +10,9 @@ class Cart
     public function __construct()
     {
         // nitialize the table
-        $this->table = $_SESSION['cart'];
+        if(!$this->cart_is_empty()):
+            $this->table = $_SESSION['cart'];
+        endif;
     }
     
     public function get_cart(){
