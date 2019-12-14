@@ -13,18 +13,25 @@ $client = new Client()
 
 <div id="dash">
 
-    <form action=" <?php echo app('controllers/auth.controller.php')  ?> " method="post">
-        <?php echo hidden_field('register_client') ?>
+    <form action="/app/controllers/auth.controller.php " method="post">
+        <input type="hidden" name="register_client" value="post">
 
         <label for="name">Name:</label>
         <input type="text" name="name">
-
+        <br>
+        <br>
         <label for="email">Email:</label>
         <input type="text" name="email">
-
+        <br>
+        <br>
         <label for="password">Password:</label>
         <input type="password" name="password">
-
+        <br>
+        <br>
+        <label for="password">Address:</label>
+        <input type="text" name="address">
+        <br>
+        <br>
         <input type="submit" value="Register">
     </form>
 
