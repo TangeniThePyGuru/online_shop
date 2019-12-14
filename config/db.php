@@ -49,6 +49,6 @@ class DB {
 
     // dynamic query
     public static function query_db($query){
-        return \mysqli_query(DB::connect(), "$query");
+        return \mysqli_query(DB::connect(), $query);
     } 
 }

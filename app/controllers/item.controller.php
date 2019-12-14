@@ -1,7 +1,12 @@
 <?php
 
+use App\Models\Cart;
+use App\Models\Item;
+
 require_once $_SERVER['DOCUMENT_ROOT'] . '/' . "config/config.php";
 require_once app('models/Item.php');
+$item = new Item();
+$cart = new Cart();
 
 if (isset($_GET) &&  get_request('insert')):
     #....
