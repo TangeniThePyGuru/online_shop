@@ -37,6 +37,10 @@ elseif (isset($_POST) &&  post_request('update_item')) : # else edit
     #....
     // TODO: Implement update an item
     die(var_dump($_POST));
+elseif (isset($_POST) &&  post_request('clear_cart')) : # else edit
+    // die(var_dump($_POST));
+    $cart->clear_cart();
+    redirect_to('/views/items/shopping_cart.php');
 else:
     die(var_dump('else block'));
 endif;
