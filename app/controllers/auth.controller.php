@@ -9,9 +9,12 @@ require_once config("auth.php");
 if (post_request('admin')) :
     #....
 elseif (post_request('client')) :
-    #....
+#....
+elseif (get_request('logout')) :
+    logout();
 elseif (post_request('auth_admin')):
     #...
+    die(var_dump($_POST));
 elseif (post_request('auth_client')) :
     #...
     // die(var_dump($_POST));
@@ -23,15 +26,12 @@ elseif (post_request('auth_client')) :
     } else {
         redirect_to('/views/partials/error.php');
     }
-elseif (post_request('register_client')) :
-    // die(var_dump($_POST));
+elseif (post_request('register_client')):
     $client = register($_POST['name'], $_POST['email'], $_POST['password'], $_POST['address']);
     if ($client){
-        // die("Client ${$_POST['name']} registered succefully");
-        redirect_to(view('partials/success.php'));
+        redirect_to('/views/partials/success.php');
     } else {
-        redirect_to(view('partials/error.php'));
-        // die(var_dump($client));
+        redirect_to('/views/partials/error.php');
     }    
 endif
 
