@@ -78,6 +78,8 @@ $cart = new Cart();
                 ?>
 
             </table>
+
+            <?php require_once view('partials/payment_methods.php') ?>
         <?php
         else:
         ?>
