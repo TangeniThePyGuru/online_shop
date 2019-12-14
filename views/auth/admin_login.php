@@ -1,7 +1,7 @@
 <div>
-    <form action="<?php echo controller('auth.controller.php') ?>" method="post">
+    <form action="<?php '/app/controllers/auth.controller.php' ?>" method="post">
         <h3>Admin Login</h3>
-        <?php echo hidden_field('auth_admin') ?>
+        <input type="hidden" name="auth_admin" value="1">
         <?php require_once view('partials/login_fields.php') ?>
     </form>
 </div>
