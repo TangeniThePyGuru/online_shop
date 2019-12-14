@@ -23,7 +23,7 @@ $cart = new Cart();
     endif;
     ?>
 
-    <div">
+    <div>
         <!-- add to cart in the current users session -->
         <?php
         if (!$cart->cart_is_empty()) :
@@ -44,50 +44,50 @@ $cart = new Cart();
 
         endif;
         ?>
-</div>
-<br>
-<?php
-if (!$cart->cart_is_empty()) :
-    ?>
-    <table>
-        <tr>
-
-
-            <th>Name</th>
-            <th>Description</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Image</th>
-
-        </tr>
+    </div>
+    <br>
         <?php
-            $count = 0;
-            while ($row = mysqli_fetch_assoc($items)) : ?>
+        if (!$cart->cart_is_empty()) :
+            ?>
+            <table class="center-text" style="margin: auto">
+                <tr>
 
-            <tr>
-                <td><?php echo $row['name'] ?></td>
-                <td><?php echo $row['description']  ?></td>
-                <td><?php echo $row['price'] ?></td>
-                <td><?php echo $quantities[$count] ?></td>
-                <td> <img src="<?php echo $row['img_url'] ?>" width="100px" alt="item_image"> </td>
-            </tr>
 
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Image</th>
+
+                </tr>
+                <?php
+                    $count = 0;
+                    while ($row = mysqli_fetch_assoc($items)) : ?>
+
+                    <tr>
+                        <td><?php echo $row['name'] ?></td>
+                        <td><?php echo $row['description']  ?></td>
+                        <td><?php echo $row['price'] ?></td>
+                        <td><?php echo $quantities[$count] ?></td>
+                        <td> <img src="<?php echo $row['img_url'] ?>" width="100px" alt="item_image"> </td>
+                    </tr>
+
+                <?php
+                        $count++;
+                    endwhile;
+                ?>
+
+            </table>
         <?php
-                $count++;
-            endwhile;
+        else:
         ?>
 
-    </table>
-<?php
-else:
-?>
 
+        <p> No Items in Cart!</p>
 
-<p> No Items in Cart!</p>
-
-<?php
-endif;
-?>
+        <?php
+        endif;
+        ?>
 </div>
 
 
