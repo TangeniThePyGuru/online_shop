@@ -19,12 +19,17 @@ function login($email, $password)
     global $client;
     global $session;
     global $user_table;
-    $user = $client->query_db("SELECT * FROM $user_table WHERE  email = $email AND password = ${hash('md5',$password)}");
-
-    if($user) {
-        $session->__set('logged_in_user', mysqli_fetch_assoc($user)['id']);
+    $password = hash('md5', $password);
+    $query = "SELECT * FROM $user_table WHERE  email = '$email' AND password = '$password'";
+    // die($query);
+    $user = $client->query_db($query);
+    // die(var_dump($user));
+    if($user != null) {
+        $user = mysqli_fetch_assoc($user);
+        $session->__set('logged_in_user', $user['id']);
+        return $user;
     } else {
-        die('Wrong credentials');
+        return null;
     } 
 
     // redirect to appropriate page

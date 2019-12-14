@@ -14,6 +14,15 @@ elseif (post_request('auth_admin')):
     #...
 elseif (post_request('auth_client')) :
     #...
+    // die(var_dump($_POST));
+    $client = login($_POST['email'], $_POST['password']);
+    // die(var_dump($client));
+    if ($client != null){
+        // redirect to appropriate page
+        redirect_to('/views/items/browse_items.php');
+    } else {
+        redirect_to('/views/partials/error.php');
+    }
 elseif (post_request('register_client')) :
     // die(var_dump($_POST));
     $client = register($_POST['name'], $_POST['email'], $_POST['password'], $_POST['address']);
