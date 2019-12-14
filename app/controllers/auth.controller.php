@@ -29,7 +29,7 @@ elseif (post_request('auth_client')) :
 elseif (post_request('register_client')):
     $client = register($_POST['name'], $_POST['email'], $_POST['password'], $_POST['address']);
     if ($client){
-        redirect_to('/views/partials/success.php');
+        redirect_to('/login.php');
     } else {
         redirect_to('/views/partials/error.php');
     }    

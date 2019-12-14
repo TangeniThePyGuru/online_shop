@@ -58,4 +58,25 @@ class Cart
     public function cart_is_empty(){
         return !isset($_SESSION['cart']);
     }
+
+    public function clear_cart(){
+        unset($_SESSION['cart']);
+    }
+
+    public function total_cost()
+    {
+        // find the total from the cart
+        $count = 0;
+        $total = 0;
+        $quantity = $this->quantities();
+
+        if (!$this->cart_is_empty()):
+            while($row = mysqli_fetch_assoc($this->items_in_cart())):
+                $total += ($row['price'] * $quantity[$count]);
+                $count++;
+            endwhile;
+            return $total;
+        endif;
+        return 0.0;
+    }
 }
