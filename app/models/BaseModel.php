@@ -35,6 +35,10 @@ abstract class BaseModel {
         return DB::query_db($query);
     }
 
+    public function last_insert_id(){
+        return mysqli_fetch_assoc($this->query_db("SELECT * FROM $this->table ORDER BY id DESC LIMIT 1"))["id"];
+    }
+
     public function get_in_range($ids){
         $query = "";
         
